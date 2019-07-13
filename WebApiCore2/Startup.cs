@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,19 +42,35 @@ namespace WebApiCore2
                     new UrlSegmentApiVersionReader());
             });
 
-    //        // added to the web api configuration in the application setup
-    //        var constraintResolver = new DefaultInlineConstraintResolver()
-    //        {
-    //            ConstraintMap =
-    //{
-    //    ["apiVersion"] = typeof( ApiVersionRouteConstraint )
-    //}
-    //        };
-    //        services.MapHttpAttributeRoutes(constraintResolver);
+            //        // added to the web api configuration in the application setup
+            //        var constraintResolver = new DefaultInlineConstraintResolver()
+            //        {
+            //            ConstraintMap =
+            //{
+            //    ["apiVersion"] = typeof( ApiVersionRouteConstraint )
+            //}
+            //        };
+            //        services.MapHttpAttributeRoutes(constraintResolver);
 
-    //        IServiceProvider serviceProvider = services.BuildServiceProvider();
+            //        IServiceProvider serviceProvider = services.BuildServiceProvider();
 
-    //        services.AddOptions();
+            //        services.AddOptions();
+
+
+            //add swagger openapi
+            services.AddSwaggerGen(sa => 
+            {
+                sa.SwaggerDoc("WebOpenApiSpec",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Library api",
+                        Version = "1"
+                    });
+
+                var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+                sa.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlCommentsFile));
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -71,6 +89,14 @@ namespace WebApiCore2
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(sa =>
+            {
+                sa.SwaggerEndpoint("/swagger/WebOpenApiSpec/swagger.json", "Web API");
+                sa.RoutePrefix = "apidoc";
+            });
+
             app.UseMvc();
         }
     }
