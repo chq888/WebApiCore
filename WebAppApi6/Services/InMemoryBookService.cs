@@ -14,7 +14,7 @@ namespace WebAppApi6.Services
         //{
         //    _context = context ?? throw new ArgumentNullException(nameof(context));
         //}
-        List<Book> Books;
+        private List<Book> Books = null;
 
         public InMemoryBookService()
         {
@@ -24,7 +24,6 @@ namespace WebAppApi6.Services
                 new Book { Id = 2, Title = "London", Description="London", AmountOfPages=1},
                 new Book { Id = 3, Title = "California", Description = "California", AmountOfPages=1}
             };
-
         }
 
         public Book GetById(int id)
@@ -43,6 +42,19 @@ namespace WebAppApi6.Services
         public int GetCountOfBooks()
         {
             return Books.Count();
+        }
+
+        public async Task<IEnumerable<Book>> GetBooksAsync()
+        {
+            
+            var result = Books
+                .ToList();
+            return await Task.FromResult(result);
+
+            //return await _context.Books
+            //    .Include(b => b.Author)
+            //    .Where(b => b.AuthorId == authorId)
+            //    .ToListAsync();
         }
 
         public async Task<IEnumerable<Book>> GetBooksAsync(int authorId)

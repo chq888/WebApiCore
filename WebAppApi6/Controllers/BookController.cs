@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppApi6.Models;
+using WebAppApi6.Services;
 
 namespace WebAppApi6.Controllers
 {
@@ -13,9 +15,11 @@ namespace WebAppApi6.Controllers
     {
         // GET: api/Book
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<Book>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var bookService = new InMemoryBookService();
+
+            return Ok(bookService.GetBooksAsync().Result);
         }
 
         // GET: api/Book/5

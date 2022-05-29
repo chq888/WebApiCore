@@ -1,19 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using System.Reflection;
+using WebAppApi6.CustomFormatters;
 
 namespace WebAppApi6
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
 
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+
+                //tells the server that if the client tries to negotiate for the media type the server doesn’t support,
+                //it should return the 406 Not Acceptable status code.
+                options.ReturnHttpNotAcceptable = true;
+
+            }).AddXmlSerializerFormatters().AddCsvOutputFormatter();
+            //.AddMvcOptions(options => options.OutputFormatters.Add(new CsvOutputFormatter()));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 

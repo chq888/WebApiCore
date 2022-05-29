@@ -16,14 +16,14 @@ namespace WebAppApi6.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        //// GET api/values
-        //[MapToApiVersion("1.0")]
-        //[Route("", Name = "Get")]
-        //[HttpGet]
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        // GET api/values
+        [MapToApiVersion("1.0")]
+        [Route("", Name = "Get")]
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            return new string[] { "value1", "value2" };
+        }
 
         //[MapToApiVersion("1.1")]
         //[Route("", Name = "Get2")]
