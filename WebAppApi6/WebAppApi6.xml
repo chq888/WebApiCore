@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAppApi6</name>
+    </assembly>
+    <members>
+        <member name="T:WebAppApi6.Controllers.ValuesController">
+            <summary>
+            ValuesController
+            </summary>
+        </member>
+        <member name="M:WebAppApi6.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            get item by id
+            </summary>
+            <param name="id">id of item you want to get</param>
+            <returns>ActionResult of type IEnumerable</returns>
+        </member>
+        <member name="M:WebAppApi6.CustomFormatters.CsvMediaTypeFormatterV2.#ctor">
+            <summary>
+            CSV Formatter
+            </summary>
+        </member>
+        <member name="M:WebAppApi6.CustomFormatters.CsvMediaTypeFormatterV2.WriteResponseBodyAsync(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext,System.Text.Encoding)">
+            <summary>
+            Write the response
+            </summary>
+            <param name="context"></param>
+            <param name="selectedEncoding"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAppApi6.Models.Author">
+            <summary>
+            Author with Id, Name fields
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Author.Id">
+            <summary>
+            id of author
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Author.Name">
+            <summary>
+            Name of author
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Author.FirstName">
+            <summary>
+            FirstName of author
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Author.LastName">
+            <summary>
+            LastName of author
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Author.Books">
+            <summary>
+            Books by author
+            </summary>
+        </member>
+        <member name="T:WebAppApi6.Models.Book">
+            <summary>
+            Book with id and name
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Book.Id">
+            <summary>
+            id of Book
+            </summary>
+        </member>
+        <member name="P:WebAppApi6.Models.Book.Title">
+            <summary>
+            Title of Book
+            </summary>
+        </member>
+    </members>
+</doc>
