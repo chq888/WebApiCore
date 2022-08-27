@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.CQRS.TodoLists.Queries.GetTodos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppApi6.Models;
@@ -11,15 +12,20 @@ namespace WebAppApi6.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class BookController : ApiBaseController
     {
+        //[Authorize(Policy = "IsActivityHost")]
         // GET: api/Book
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> Get()
+        public async Task<ActionResult<IEnumerable<Book>>> GetAsync()
         {
-            var bookService = new InMemoryBookService();
+            //var bookService = new InMemoryBookService();
 
-            return Ok(bookService.GetBooksAsync().Result);
+            //return Ok(bookService.GetBooksAsync().Result);
+
+            var re = await Mediator.Send(new GetBooksQuery());
+
+            return Ok(re);
         }
 
         // GET: api/Book/5

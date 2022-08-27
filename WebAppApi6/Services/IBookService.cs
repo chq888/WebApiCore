@@ -7,6 +7,7 @@ namespace WebAppApi6.Services
 {
     public interface IBookService
     {
+        Task<IEnumerable<Book>> GetBooksAsync();
         Task<IEnumerable<Book>> GetBooksAsync(int authorId);
 
         Task<Book> GetBookAsync(int authorId, int bookId);

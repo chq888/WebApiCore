@@ -4,6 +4,302 @@
         <name>WebAppApi6</name>
     </assembly>
     <members>
+        <!-- Badly formed XML comment ignored for member "T:Application.Common.Behaviours.UnhandledExceptionBehaviour`2" -->
+        <member name="M:Application.Common.Behaviours.UnhandledExceptionBehaviour`2.#ctor(Microsoft.Extensions.Logging.ILogger{`0})">
+            <summary>
+            Defines handler for incoming events exceptions.
+            </summary>
+            <param name="logger">Logging service.</param>
+        </member>
+        <member name="M:Application.Common.Behaviours.UnhandledExceptionBehaviour`2.Handle(`0,System.Threading.CancellationToken,MediatR.RequestHandlerDelegate{`1})">
+            <summary>
+            Handles exceptions of the incoming request.
+            </summary>
+            <param name="request">Incoming request.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <param name="next">New pipeline behaviour.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.Common.Behaviours.ValidationBehaviour`2">
+            <summary>
+            Represents behaviour on Request validation.
+            </summary>
+            <typeparam name="TRequest">Type of Mediator request.</typeparam>
+            <typeparam name="TResponse">Type of Mediator response.</typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Application.Common.Behaviours.ValidationBehaviour`2.#ctor(System.Collections.Generic.IEnumerable{FluentValidation.IValidator{`0}})" -->
+        <member name="M:Application.Common.Behaviours.ValidationBehaviour`2.Handle(`0,System.Threading.CancellationToken,MediatR.RequestHandlerDelegate{`1})">
+            <summary>
+            Handle request validation.
+            </summary>
+            <param name="request">Requet to validate.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <param name="next">Next pipeline behaviour.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.Common.Interfaces.ICurrentUserService">
+            <summary>
+            Service to manage Current User.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Interfaces.ICurrentUserService.UserId">
+            <summary>
+            User ID.
+            </summary>
+        </member>
+        <member name="T:Application.Common.Interfaces.IDateTimeService">
+            <summary>
+            Interface for service managing Date/Time.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Interfaces.IDateTimeService.Now">
+            <summary>
+            Current Data and Time.
+            </summary>
+        </member>
+        <member name="T:Application.Common.Interfaces.IDomainEventService">
+            <summary>
+            Interface for service to manage Domain Events.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Interfaces.IDomainEventService.Publish(Domain.Common.DomainEvent)">
+            <summary>
+            Publish Domain Events.
+            </summary>
+            <param name="domainEvent">Domain event to publish.</param>
+        </member>
+        <member name="T:Application.Common.Models.DomainEventNotification`1">
+            <summary>
+            Defines notification for domain events.
+            </summary>
+            <typeparam name="TDomainEvent">Domain event.</typeparam>
+        </member>
+        <member name="P:Application.Common.Models.DomainEventNotification`1.DomainEvent">
+            <summary>
+            Domain event.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Models.DomainEventNotification`1.#ctor(`0)">
+            <summary>
+            Defines object of <see cref="T:Application.Common.Models.DomainEventNotification`1"/> class.
+            </summary>
+            <param name="domainEvent">Domain event.</param>
+        </member>
+        <member name="T:Application.Common.Models.PaginatedList`1">
+            <summary>
+            Represents items in the List format with pagination.
+            </summary>
+            <typeparam name="T">Entity type.</typeparam>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.Items">
+            <summary>
+            List of items.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.PageIndex">
+            <summary>
+            Index of the currect page.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.TotalPages">
+            <summary>
+            Total pages count.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.TotalCount">
+            <summary>
+            Total Items count.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Models.PaginatedList`1.#ctor(System.Collections.Generic.List{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Define <see cref="T:Application.Common.Models.PaginatedList`1"/> entity.
+            </summary>
+            <param name="items">Items to store in paginated list.</param>
+            <param name="count">Entities total count.</param>
+            <param name="pageIndex">Index of the current page.</param>
+            <param name="pageSize">Entities count per page.</param>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.HasPreviousPage">
+            <summary>
+            Check whether there is previous page.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.PaginatedList`1.HasNextPage">
+            <summary>
+            Check whether there is next page.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Models.PaginatedList`1.CreateAsync(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            Create paginated list with Querable source.
+            </summary>
+            <param name="source">Querable Items to store.</param>
+            <param name="pageIndex">Required page index.</param>
+            <param name="pageSize">Required page size.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.Common.Models.Result">
+            <summary>
+            Processing result.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.Result.Succeeded">
+            <summary>
+            Defines, whether processing succeeded.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Models.Result.Errors">
+            <summary>
+            Array of processing errors.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Models.Result.Success">
+            <summary>
+            Set success results.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Models.Result.Failure(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Set failure result.
+            </summary>
+            <param name="errors">Processing errors.</param>
+        </member>
+        <member name="M:Application.Common.Models.Result.#ctor(System.Boolean,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Defines object of <see cref="T:Application.Common.Models.Result"/> class.
+            </summary>
+            <param name="succeeded">Is processing succeeded.</param>
+            <param name="errors">Processing errors.</param>
+        </member>
+        <member name="T:Application.Common.Security.AuthorizeAttribute">
+            <summary>
+            Specifies the class, this attribute is applied to, requires authorization.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Security.AuthorizeAttribute.Roles">
+            <summary>
+            Gets or sets a comma delimited list of roles that are allowed to access the resource.
+            </summary>
+        </member>
+        <member name="P:Application.Common.Security.AuthorizeAttribute.Policy">
+            <summary>
+            Gets or sets the policy name that determines access to the resource.
+            </summary>
+        </member>
+        <member name="M:Application.Common.Security.AuthorizeAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Application.Common.Security.AuthorizeAttribute"/> class. 
+            </summary>
+        </member>
+        <member name="M:Application.DependencyInjection.AddApplication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add main application services to DI container.
+            </summary>
+            <param name="services">DI container.</param>
+            <param name="configuration">Application configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.CQRS.TodoLists.Queries.GetTodos.GetBooksQuery">
+            <summary>
+            Defines Todo items query.
+            </summary>
+        </member>
+        <member name="T:Application.CQRS.TodoLists.Queries.GetTodos.GetBooksQueryHandler">
+            <summary>
+            Defines hadler for Todo items query.
+            </summary>
+        </member>
+        <member name="T:Domain.Interfaces.ICreatable">
+            <summary>
+            Interface for entities, that can be created.
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.ICreatable.CreatedAt">
+            <summary>
+            Creation date.
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.ICreatable.CreatedBy">
+            <summary>
+            Creator.
+            </summary>
+        </member>
+        <member name="T:Domain.Interfaces.IHasDomainEvent">
+            <summary>
+            Interface for entities with Domain Events.
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.IHasDomainEvent.DomainEvents">
+            <summary>
+            Collection of Entity Domain Events.
+            </summary>
+        </member>
+        <member name="T:Domain.Interfaces.IModifiable">
+            <summary>
+            Interface for entities, that can be modified.
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.IModifiable.ModifiedAt">
+            <summary>
+            Last modification date.
+            </summary>
+        </member>
+        <member name="P:Domain.Interfaces.IModifiable.ModifiedBy">
+            <summary>
+            Last modifier.
+            </summary>
+        </member>
+        <member name="T:Domain.Common.AuditableEntity">
+            <summary>
+            Abstract class for auditable entity.
+            </summary>
+        </member>
+        <member name="P:Domain.Common.AuditableEntity.CreatedAt">
+            <inheritdoc/>
+        </member>
+        <member name="P:Domain.Common.AuditableEntity.CreatedBy">
+            <inheritdoc/>
+        </member>
+        <member name="P:Domain.Common.AuditableEntity.ModifiedAt">
+            <inheritdoc/>
+        </member>
+        <member name="P:Domain.Common.AuditableEntity.ModifiedBy">
+            <inheritdoc/>
+        </member>
+        <member name="T:Domain.Common.DomainEvent">
+            <summary>
+            Entity Domain Event.
+            </summary>
+        </member>
+        <member name="P:Domain.Common.DomainEvent.IsPublished">
+            <summary>
+            Publication flag.
+            </summary>
+        </member>
+        <member name="P:Domain.Common.DomainEvent.DateOccured">
+            <summary>
+            Event creation date (in UTC format).
+            </summary>
+        </member>
+        <member name="T:Domain.Common.ValueObject">
+            <summary>
+            Base object without ID (https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects)
+            </summary>
+        </member>
+        <member name="M:Domain.Common.ValueObject.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the currect object.
+            </summary>
+            <param name="obj">Object to check equality with.</param>
+            <returns>True if specified object is equal to current object; otherwise, false.</returns>
+        </member>
+        <member name="M:Domain.Common.ValueObject.GetHashCode">
+            <summary>
+            Calculate hash core for the current object.
+            </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
         <member name="T:WebAppApi6.Controllers.ValuesController">
             <summary>
             ValuesController
@@ -73,6 +369,52 @@
             <summary>
             Title of Book
             </summary>
+        </member>
+        <member name="M:API.DependencyInjection.AddWebUI(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add services from API layer to DI container.
+            </summary>
+            <param name="services">DI container.</param>
+            <param name="configuration">Application configuration.</param>
+        </member>
+        <member name="T:API.Services.CurrentUserService">
+            <summary>
+            Service to manage information about current user.
+            </summary>
+        </member>
+        <member name="P:API.Services.CurrentUserService.UserId">
+            <summary>
+            ID of current user.
+            </summary>
+        </member>
+        <member name="M:API.Services.CurrentUserService.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Define <see cref="T:API.Services.CurrentUserService"/> entity.
+            </summary>
+            <param name="httpContextAccessor">Service to access HTTP context.</param>
+        </member>
+        <member name="T:Infrastructure.Services.DateTimeService">
+            <summary>
+            Service to get current Date and Time.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Services.DateTimeService.Now">
+            <inheritdoc/>
+        </member>
+        <member name="T:Infrastructure.Services.DomainEventService">
+            <summary>
+            Service to manage domain event.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Services.DomainEventService.#ctor(Microsoft.Extensions.Logging.ILogger{Infrastructure.Services.DomainEventService},MediatR.IPublisher)">
+            <summary>
+            Defines Domain Event Service.
+            </summary>
+            <param name="logger">Logging service.</param>
+            <param name="mediator">Mediator.</param>
+        </member>
+        <member name="M:Infrastructure.Services.DomainEventService.Publish(Domain.Common.DomainEvent)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>
